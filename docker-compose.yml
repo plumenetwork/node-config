@@ -1,0 +1,23 @@
+version: '3.4'
+
+volumes:
+  l2_data:
+
+services:
+  l2:
+    image: public.ecr.aws/i6b2w2n6/nitro-node:plume-1.0.0
+    ports:
+      - "8545:8545"
+      - "8546:8546"
+    volumes:
+      - "${PWD}/nodeConfig.json:/config/nodeConfig.json"
+      - l2_data:/home/user/.arbitrum
+    entrypoint:
+      - "/usr/local/bin/nitro"
+      - --conf.file=/config/nodeConfig.json
+      - --node.staker.enable
+      - --node.staker.strategy=Watchtower
+      - --execution.forwarding-target=wss://plume-testnet.rpc.caldera.xyz/ws
+      - --node.feed.input.url=wss://plume-testnet.rpc.caldera.xyz/feed
+      - --parent-chain.connection.url=https://eth-sepolia.g.alchemy.com/v2/fpQPC7q22cy7i2rILZBCiibBXQkjpwJO
+      - --node.data-availability.rest-aggregator.urls="https://plume-testnet.rpc.caldera.xyz/rest-aggregator"
