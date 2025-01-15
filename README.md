@@ -1,3 +1,5 @@
+Note: the Plume Testnet is now deprecated. This repository is now deprecated.
+
 # Plume Testnet Node Config
 
 This repo is set up to easily run replica nodes for the Plume Testnet. Simply run `docker-compose up` to bring a replica node up locally.
